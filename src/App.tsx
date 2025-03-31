@@ -1,23 +1,20 @@
-import { AddTask } from "./features/tasks/AddTask";
-import { TaskFilter } from "./features/tasks/TaskFilter";
-import { TaskList } from "./features/tasks/TaskList";
-import "./styles/index.css";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
+import { QueryClientProvider } from '@tanstack/react-query'
+import { RouterProvider } from 'react-router-dom'
+import { Suspense } from 'react'
+import { router } from './router'
+import { queryClient } from './shared/config/queryClient'
+import { Toaster } from 'react-hot-toast'
+import "./styles/index.css"
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="p-4 max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-4">📋 Mes tâches</h1>{" "}
-        <TaskFilter />
-        <AddTask />
-        <TaskList />
-      </main>
+      <Suspense fallback={<div className="p-4 text-center">Made By didicode...</div>}>
+        <RouterProvider router={router} />
+        <Toaster position="top-right" reverseOrder={false} />
+      </Suspense>
     </QueryClientProvider>
-  );
+  )
 }
 
-export default App;
+export default App
