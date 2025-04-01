@@ -11,6 +11,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: React.createElement(PublicLayout),
+    
     children: [
       { index: true, element: React.createElement(HomePage) },
       { path: 'add', element: React.createElement(AddTodoPage) },
